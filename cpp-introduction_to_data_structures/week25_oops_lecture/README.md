@@ -51,12 +51,13 @@ Creating a class
       and adding capablity. 
 - In C++ the keyword "class" is used. 
 - For example creating a date class, a "Date" in reality is three integers, a day, month and year. 
-  class Date{
-        public:
-        int day;
-        int month;
-        int year;
-  };
+  
+      class Date{
+            public:
+            int day;
+            int month;
+            int year;
+      };
 
   example: birthday has the values day, month and year. making them together gives your birthday. 
            so that is where the idea of encapsulation comes. 
@@ -69,13 +70,14 @@ Enforcing protection
 
   * (note) private is the DEFAULT for classes!
 
-  Code snippit:
-  class Date{
-      private:
-        int day;
-        int month;
-        int year;
-  };
+ Code snippit:
+ 
+        class Date{
+            private:
+              int day;
+              int month;
+              int year;
+        };
 
   now by making them private nobody has the access and nobody can change the value. 
 
@@ -101,28 +103,28 @@ Accessors and Mutators (getters and setters)
 
   To define the functions outside the class we need scope resolution operators. 
 
-  class Date{
-      private:
-        int day;
-        int month;
-        int year;
-      public:
-        void setDate(int newDay);
-        void setMonth(int newMonth);
-        void setYear(int newYear) {
-          year = newYear;
-        }
-  };
+      class Date{
+          private:
+            int day;
+            int month;
+            int year;
+          public:
+            void setDate(int newDay);
+            void setMonth(int newMonth);
+            void setYear(int newYear) {
+              year = newYear;
+            }
+      };
 
-  void Date::setDay(int newDay){
-      if (newDay > 0 && newDay <= 31)
-        day = newDay;
-  }
+      void Date::setDay(int newDay){
+          if (newDay > 0 && newDay <= 31)
+            day = newDay;
+      }
 
-  void Date::setMonth(int newMonth){
-      if (newMonth > 0 && newMonth <= 12)
-        month = newMonth;
-  }
+      void Date::setMonth(int newMonth){
+          if (newMonth > 0 && newMonth <= 12)
+            month = newMonth;
+      }
 
   so with the help of the mutators we can change the data. 
 
@@ -143,10 +145,12 @@ Accessors and Mutators (getters and setters)
 Other userful functions
 - Perhaps we could add a printDate function to print a formatted date. 
   Example:
-  void displayDate() const{ cout<< day << "/" << mont<< "/" <<year;}
+  
+      void displayDate() const{ cout<< day << "/" << mont<< "/" <<year;}
 
 - Or a validate function to check if the date is valid. 
-  bool validate() const;
+ 
+       bool validate() const;
 
 - The above might require a leap year calculation which could be a private function inside date.
 
@@ -159,15 +163,15 @@ Creating and working with an object.
 
   Example snippet:
 
-  int main(){
-    Date d1;
-    d1.setDay(6);
-    d1.setMonth(8);
-    d1.setYear(1991);
+      int main(){
+        Date d1;
+        d1.setDay(6);
+        d1.setMonth(8);
+        d1.setYear(1991);
 
-    cout<<"Very Important date: ";
-    d1.displayDate();
-  }
+        cout<<"Very Important date: ";
+        d1.displayDate();
+      }
 
 Constructor
 - What are the value of the variables immidately after the construction of the object. 
@@ -183,40 +187,41 @@ Constructor parts
   Sample code 
 
   * member initialization list
-  class Date{
-    private: 
-      int day;
-      int month;
-      int year;
-    public:
-      Date() :day(1), month(1), year(1970){}
-  }
 
-  * inside the code without member initialization list. 
+        class Date{
+          private: 
+            int day;
+            int month;
+            int year;
+          public:
+            Date() :day(1), month(1), year(1970){}
+        }
 
-  class Date{
-    private:
-      int day;
-      int month;
-      int year;
-    public:
-      Date(){
-        day = 1;
-        month = 1;
-        year = 1970;
-      }
-  }
+        * inside the code without member initialization list. 
+
+        class Date{
+          private:
+            int day;
+            int month;
+            int year;
+          public:
+            Date(){
+              day = 1;
+              month = 1;
+              year = 1970;
+            }
+        }
 
 More Constructors
 - A constructor that takes three ints?
 
-  Date(int newD, int newM, int newY): day(newD), month(newM), year(newY){}
+      Date(int newD, int newM, int newY): day(newD), month(newM), year(newY){}
 
 - Now we can do
 
-  int main(){
-    Date d2(6, 8, 1991);
-  }
+      int main(){
+        Date d2(6, 8, 1991);
+      }
 
 - Create as many constructors as you would like, each must have a unique set of parameters. 
 
@@ -225,7 +230,8 @@ An Important Pointer
 - Every object has a pointer, which looks like a data member, called "this"
 - The "this" pointer points to the calling object. 
 - Though not necessary, you can always use this 
-  void setYear(int newYear){ this -> year = newYear;}
+
+      void setYear(int newYear){ this -> year = newYear;}
 
   Some times "this" will be needed
     - If a person has a spouce pointer, and gets married, the person's spouce 
@@ -294,20 +300,21 @@ Classes that contain dynamic memory
 - This is known as a shallow copy and would be problematic if left alone. 
 
 Example
-  class Thing{
-    int * value;
-    public:
-      Thing(int newVal = 0) : value(new int (newval)){}
-  };
 
-  int main(){
-    Thing one(1);
-    Thing two(2);
+    class Thing{
+      int * value;
+      public:
+        Thing(int newVal = 0) : value(new int (newval)){}
+    };
 
-    one = two; // it made one to point to the same location as two
-              // that is copied the address. 
-              // and one memory is a memory leake. 
-  }
+    int main(){
+      Thing one(1);
+      Thing two(2);
+
+      one = two; // it made one to point to the same location as two
+                // that is copied the address. 
+                // and one memory is a memory leake. 
+    }
 
 
   Three problem, Big 3 Solution
@@ -323,16 +330,16 @@ Example
 
   Code
 
-  class Thing{
-    int * value;
-    public:
-      Thing(int newVal = 0) :value(new int (newVal)){}
-      ~Thing(){ delete value; } //destructor
-      Thing(const Thing& rhs) {value = new int(*rhs.value);}
-      // copy constructor
-      Thing& operator = (const Thing& rhs){ *value = *rhs.value;}
-      // Assignment op
-  }
+    class Thing{
+      int * value;
+      public:
+        Thing(int newVal = 0) :value(new int (newVal)){}
+        ~Thing(){ delete value; } //destructor
+        Thing(const Thing& rhs) {value = new int(*rhs.value);}
+        // copy constructor
+        Thing& operator = (const Thing& rhs){ *value = *rhs.value;}
+        // Assignment op
+    }
 
 Inheritance   
 - During inheritance, the existing class, called a base class is enlarged to
@@ -348,25 +355,25 @@ Pets and Cats
 
   Example
 
-  class Pet{  // base calss
-      string name;
-      int petID;
-    Public:
-      Pet(int newID = 0) {petID = newID;}
-      string getName() const {return name;}
-      void setName (string newName) {name = newName;}
-      void speak() const{}
-  };
-  class Cat : public Pet {  // Cat Is-A pet // Derived class
-      double wiskerLength;
-    public:
-      Cat() :Pet(10000){} // explicit call to BASE constructor. 
-      void speak() const {cout << "MEOW!" << endl;}
-      void setLength (double newLength);
-      double getLength() const{return whisterLength;}
-      void setName(string newName);
-      Cat& operator = (const Pet&);
-  }
+    class Pet{  // base calss
+        string name;
+        int petID;
+      Public:
+        Pet(int newID = 0) {petID = newID;}
+        string getName() const {return name;}
+        void setName (string newName) {name = newName;}
+        void speak() const{}
+    };
+    class Cat : public Pet {  // Cat Is-A pet // Derived class
+        double wiskerLength;
+      public:
+        Cat() :Pet(10000){} // explicit call to BASE constructor. 
+        void speak() const {cout << "MEOW!" << endl;}
+        void setLength (double newLength);
+        double getLength() const{return whisterLength;}
+        void setName(string newName);
+        Cat& operator = (const Pet&);
+    }
 
   What if we need to override?
   - To override, you just create a function in the derived with the 
@@ -375,11 +382,11 @@ Pets and Cats
     use the scop-resolution operator "::"
 
     Example
-
-    void Cat::setName(string newName){
-      whiskerLength = 0;
-      Pet::setName(newName);
-    }
+    
+          void Cat::setName(string newName){
+            whiskerLength = 0;
+            Pet::setName(newName);
+          }
 
 What if derived SHOULD access base's stuff?
 - C++ adds a protection mechanism to allow for a condition where a derived
@@ -395,16 +402,16 @@ Polymorphism
 
 Code
 
-int main(){
-    Pet p;
-    Pet* pptr;
-    Cat c;
-    Cat* cptr;
-    p = c;  //Always allowed
-    c = p;  // Allowed if operator = (const Pet&) is overloaded;
-    pptr = &c;  // Always allowed, polymorphism
-    cptr = &p;  // NEVER ALLOWED!
-}
+    int main(){
+        Pet p;
+        Pet* pptr;
+        Cat c;
+        Cat* cptr;
+        p = c;  //Always allowed
+        c = p;  // Allowed if operator = (const Pet&) is overloaded;
+        pptr = &c;  // Always allowed, polymorphism
+        cptr = &p;  // NEVER ALLOWED!
+    }
 
 Polymorphism
 - Polymorphism in c++ allows us to copy data from a derived class into a base class,
@@ -432,26 +439,26 @@ Pure virtual
 
 Example code
 
-class Pet{  // base class (abstract because of speak)
-    string name;
-    int petID;
-  public:
-    Pet (int newID = 0) { petID = newID;}
-    string getName() const {return name;}
-    virtual void setName(string newName) {name = newName;}
-    virtual void speak() const = 0; // Pure virtual function 
-};
+    class Pet{  // base class (abstract because of speak)
+        string name;
+        int petID;
+      public:
+        Pet (int newID = 0) { petID = newID;}
+        string getName() const {return name;}
+        virtual void setName(string newName) {name = newName;}
+        virtual void speak() const = 0; // Pure virtual function 
+    };
 
-class Cat : public Pet{// Cat Is A Pet // derived class
-    doucle whiskerLength;
-  public:
-    Cat() :Pet(10000){ } //explicit call to BASE constructor
-    void speak() const{cout << "MEOW!" << endl;}
-    void setLength(double newLength);
-    double getLength()const {return whiskerLength;}
-    void setName(string newName);
-    Cat& operator = (const Pet&);
-};
+    class Cat : public Pet{// Cat Is A Pet // derived class
+        doucle whiskerLength;
+      public:
+        Cat() :Pet(10000){ } //explicit call to BASE constructor
+        void speak() const{cout << "MEOW!" << endl;}
+        void setLength(double newLength);
+        double getLength()const {return whiskerLength;}
+        void setName(string newName);
+        Cat& operator = (const Pet&);
+    };
 
 What we discussed
 - Definition of object and class
