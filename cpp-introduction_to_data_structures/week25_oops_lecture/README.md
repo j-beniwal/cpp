@@ -197,7 +197,7 @@ Constructor parts
             Date() :day(1), month(1), year(1970){}
         }
 
-        * inside the code without member initialization list. 
+  * inside the code without member initialization list. 
 
         class Date{
           private:
